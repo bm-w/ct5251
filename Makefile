@@ -10,7 +10,9 @@ COFFEE_BIN := $(MOD_DIR)/coffee-script/bin/coffee
 UGLIFY_BIN := $(MOD_DIR)/uglify-js/bin/uglifyjs
 
 
-# Faux targets
+# Phony targets
+
+.PHONY: install build clean clean-install clean-build publish
 
 install:
 	cd $(DIR) && npm install
@@ -19,6 +21,17 @@ build: \
 	$(PUB_DIR)/index.html \
 	$(PUB_DIR)/assets/ct5251.css \
 	$(PUB_DIR)/assets/ct5251.js
+
+publish: build
+	$(eval COMMIT_ID := $(shell git rev-parse HEAD))
+	git checkout gh-pages
+	rsync -ur $(PUB_DIR)/ .
+	git add -u
+	@(git diff-index --quiet HEAD && echo "There are no new changes; not publishing...") || (\
+		echo "Committing from \`$(COMMIT_ID)\` and pushing to \`gh-pages\`..." && \
+		git commit -m "Published from master-branch commit $(COMMIT_ID)." && \
+		git push origin gh-pages)
+	git checkout master
 
 
 # Directory targets
