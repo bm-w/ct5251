@@ -1,0 +1,16 @@
+{
+	"name": "ct5251",
+	"author": "Bastiaan Marinus van de Weerd <student@bm-w.eu>",
+	"description": "CT5251 assignment.",
+	"repository": "https://github.com/bm-w/ct5251",
+	"scripts": {
+		"predeploy": "make build -f ./Makefile"
+	},
+	"devDependencies": {
+		"jade": "*",
+		"stylus": "*",
+		"coffee-script": "*",
+		"uglify-js": "*"
+	},
+	"license": "MIT"
+}
