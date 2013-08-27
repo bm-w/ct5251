@@ -25,7 +25,7 @@ build: \
 publish: build
 	$(eval COMMIT_ID := $(shell git rev-parse HEAD))
 	git checkout gh-pages
-	rsync -ur $(PUB_DIR)/ .
+	rsync -r $(PUB_DIR)/ .
 	git add -u
 	@(git diff-index --quiet HEAD && echo "There are no new changes; not publishing...") || (\
 		echo "Committing from \`$(COMMIT_ID)\` and pushing to \`gh-pages\`..." && \
