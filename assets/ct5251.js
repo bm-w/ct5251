@@ -1,0 +1,1 @@
+var n;n=angular.module("ct5251",[]),n.run(["$log",function(n){return n.debug("Initializing `ct5251` controllers module...")}]);
