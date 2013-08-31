@@ -19,6 +19,7 @@ install:
 
 build: \
 	$(PUB_DIR)/index.html \
+	$(PUB_DIR)/style/index.html \
 	$(PUB_DIR)/assets/ct5251.css \
 	$(PUB_DIR)/assets/ct5251.js
 
@@ -50,6 +51,10 @@ $(PUB_DIR)/assets: $(PUB_DIR)
 
 $(PUB_DIR)/index.html: $(SRC_DIR)/index.jade $(MOD_DIR) $(PUB_DIR)
 	$(JADE_BIN) < $(SRC_DIR)/index.jade > $(PUB_DIR)/index.html
+
+$(PUB_DIR)/style/index.html: $(SRC_DIR)/style.jade $(MOD_DIR) $(PUB_DIR)
+	mkdir -p $(PUB_DIR)/style
+	$(JADE_BIN) < $(SRC_DIR)/style.jade > $(PUB_DIR)/style/index.html
 
 $(PUB_DIR)/assets/ct5251.css: $(SRC_DIR)/assets/base.styl $(MOD_DIR) $(PUB_DIR)/assets
 	$(STYLUS_BIN) < $(SRC_DIR)/assets/base.styl > $(PUB_DIR)/assets/ct5251.css
